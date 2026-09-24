@@ -13,7 +13,7 @@ Arquitectura en **3 capas** (interfaces → servicio → datos) con un módulo c
 ```mermaid
 flowchart TD
     subgraph Interfaces
-        CLI["CLI\npython -m customer_search.cli"]
+        CLI["CLI\npython -m src.cli"]
         API["HTTP API\nGET /customers/search?q="]
     end
 
@@ -38,13 +38,13 @@ flowchart TD
 
 | Componente | Archivo | Descripción |
 |-----------|---------|-------------|
-| **Customer** (model) | `customer_search/models.py` | Dataclass con campos `id`, `name`, `email`. |
-| **CustomerRepository** | `customer_search/repository.py` | Carga `data/customers.json`, parsea a lista de `Customer`, cachea en memoria. |
-| **SearchService** | `customer_search/service.py` | Punto central: valida query → normaliza → filtra registros → devuelve resultados. |
-| **Normalizer** | `customer_search/normalizer.py` | Funciones puras: `strip`, `remove_accents` (NFD + strip diacritics), `lowercase`. |
-| **Validator** | `customer_search/validator.py` | Funciones puras: `validate_query()` lanza `ValidationError` si el input es inválido. |
-| **HTTP Handler** | `customer_search/api.py` | Servidor HTTP (stdlib `http.server`). Expone `GET /customers/search?q=`. |
-| **CLI** | `customer_search/cli.py` | Entry point CLI. Parsea args, imprime resultados o errores. |
+| **Customer** (model) | `src/models.py` | Dataclass con campos `id`, `name`, `email`. |
+| **CustomerRepository** | `src/repository.py` | Carga `data/customers.json`, parsea a lista de `Customer`, cachea en memoria. |
+| **SearchService** | `src/service.py` | Punto central: valida query → normaliza → filtra registros → devuelve resultados. |
+| **Normalizer** | `src/normalizer.py` | Funciones puras: `strip`, `remove_accents` (NFD + strip diacritics), `lowercase`. |
+| **Validator** | `src/validator.py` | Funciones puras: `validate_query()` lanza `ValidationError` si el input es inválido. |
+| **HTTP Handler** | `src/api.py` | Servidor HTTP (stdlib `http.server`). Expone `GET /customers/search?q=`. |
+| **CLI** | `src/cli.py` | Entry point CLI. Parsea args, imprime resultados o errores. |
 
 ---
 
@@ -181,7 +181,7 @@ GET http://localhost:8000/customers/search?q=jose
 ### CLI (NFR-02)
 
 ```
-Usage: python -m customer_search.cli <query>
+Usage: python -m src.cli <query>
 
   Éxito (exit 0):
     Found 2 customer(s):
@@ -211,7 +211,7 @@ Usage: python -m customer_search.cli <query>
 | **CLI** | `ValidationError` | Imprime en stderr, exit code 1 |
 | **CLI** | `DataError` | Imprime en stderr, exit code 1 |
 
-Excepciones custom definidas en `customer_search/exceptions.py`:
+Excepciones custom definidas en `src/exceptions.py`:
 ```python
 class ValidationError(Exception): ...
 class DataError(Exception): ...
@@ -229,11 +229,11 @@ class DataError(Exception): ...
 | **Integration** | HTTP API — requests contra servidor levantado | `pytest` + `urllib` | TS-11, TS-12 |
 | **Integration** | CLI — subprocess con captura de stdout/stderr | `pytest` + `subprocess` | TS-13, TS-14 |
 | **Performance** | 1 000 registros en ≤ 200 ms | `pytest` + `time` | TS-10 |
-| **Coverage** | ≥ 90 % en `customer_search/` | `pytest-cov` | TS-15 |
+| **Coverage** | ≥ 90 % en `src/` | `pytest-cov` | TS-15 |
 
 **Comando:**
 ```bash
-pytest tests/ --cov=customer_search --cov-report=term-missing
+pytest tests/ --cov=src --cov-report=term-missing
 ```
 
 ---

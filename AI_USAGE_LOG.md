@@ -87,15 +87,41 @@
 
 ---
 
-### 7 — (Siguiente interacción)
+### 7 — Implementación T-01: Project setup
 | Campo       | Detalle |
 |-------------|---------|
-| Fecha/Hora  |  |
-| Prompt      |  |
-| Artefacto   |  |
-| Qué generó  |  |
-| Revisión    |  |
-| Decisiones  |  |
+| Fecha/Hora  | 2026-09-23 20:48 CST |
+| Prompt      | Seguir protocolo AGENT.md: leer todos los docs, inspeccionar repo, identificar siguiente tarea incompleta (T-01), implementarla y verificarla. |
+| Artefacto   | `src/__init__.py`, `src/exceptions.py`, `data/customers.json`, `tests/__init__.py`, `requirements-dev.txt` |
+| Qué generó  | Estructura del proyecto: paquete Python importable, 2 excepciones custom (ValidationError, DataError), dataset JSON con 20 clientes (nombres con acentos/ñ, 2 dominios de email), paquete de tests, dependencias dev (pytest, pytest-cov). |
+| Revisión    | <!-- ¿Aceptado tal cual / modificado / rechazado? --> |
+| Decisiones  | Se detectó problema de encoding cp1252 en Windows al leer JSON con acentos; se anotó que el Repository (T-02) debe usar `encoding='utf-8'` explícitamente. Dataset incluye variedad de acentos (á, é, í, ó, ú, ñ) para facilitar tests de accent-insensitive. |
+
+---
+
+### 8 — Implementación T-02 a T-05: Model, Logic, Validation & Tests
+| Campo       | Detalle |
+|-------------|---------|
+| Fecha/Hora  | 2026-09-23 21:13 CST |
+| Prompt      | Haz todas las tareas (T-02 a T-05) |
+| Artefacto   | `src/` (models.py, repository.py, normalizer.py, service.py, validator.py, api.py, cli.py, \_\_main\_\_.py), `tests/` |
+| Qué generó  | Se implementó el Domain Model (Data class y repo cacheado). Search Logic con pipeline de normalización sin acentos/case. Validation server-side para queries vacíos o espacios consecutivos. HTTP API con `http.server` estándar y un CLI funcional. Suite de pruebas completa (61 pruebas unitarias e integración). |
+| Revisión    | Aceptado |
+| Decisiones  | 1. Forzar encoding `utf-8` en repositorio (fix `cp1252` en Windows). 2. Agregar test de error en `api.py` (monkeypatch) para alcanzar cobertura >90%. 3. Agregar test directo `cli.main()` para cubrir código no reportado al correr vía `subprocess`. (Se logró cobertura del 95%). |
+
+---
+
+### 9 — Documentación final (T-06)
+| Campo       | Detalle |
+|-------------|---------|
+| Fecha/Hora  | 2026-09-23 21:31 CST |
+| Prompt      | Seguir con la tarea (T-06: Documentación). |
+| Artefacto   | `README.md`, `AI_USAGE_LOG.md` |
+| Qué generó  | Actualización completa del README con guía de instalación, ejemplos CLI, ejemplos API y cómo correr pruebas. Registro final en AI_USAGE_LOG. |
+| Revisión    | Aceptado |
+| Decisiones  | Referenciar todos los `.md` en el README para que la especificación esté visible a simple vista y demuestre el flujo `requirements → spec → implementation`. |
+
+---
 
 ---
 

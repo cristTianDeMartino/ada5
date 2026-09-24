@@ -23,7 +23,7 @@ Proveer una función de búsqueda de clientes que, dado un texto libre, devuelva
 
 - Motor de búsqueda con partial match, case-insensitive y accent-insensitive sobre `name` y `email` simultáneamente (FR-02, FR-03, FR-04, FR-05).
 - Validación server-side del query (FR-08, FR-09, FR-10).
-- Interfaz CLI (`python -m customer_search.cli <query>`) y HTTP API (`GET /customers/search?q=<query>` en puerto 8000) (NFR-02).
+- Interfaz CLI (`python -m src.cli <query>`) y HTTP API (`GET /customers/search?q=<query>` en puerto 8000) (NFR-02).
 - Dataset almacenado en `data/customers.json` (C-01), hasta 1 000 registros (A-01).
 - Suite de tests automatizados con cobertura ≥ 90 % (NFR-03).
 
@@ -141,8 +141,8 @@ Estructura JSON de ejemplo (`data/customers.json`):
 | TS-10 | Performance: 1 000 registros, búsqueda ≤ 200 ms. | Performance | AC-8 |
 | TS-11 | HTTP API: `GET /customers/search?q=mar` → 200 con resultados JSON. | Integration | AC-9 |
 | TS-12 | HTTP API: `GET /customers/search?q=` → 400 con error JSON. | Integration | AC-6, AC-9 |
-| TS-13 | CLI: `python -m customer_search.cli "mar"` → salida con resultados. | Integration | AC-9 |
-| TS-14 | CLI: `python -m customer_search.cli ""` → error en stderr, exit code 1. | Integration | AC-6, AC-9 |
+| TS-13 | CLI: `python -m src.cli "mar"` → salida con resultados. | Integration | AC-9 |
+| TS-14 | CLI: `python -m src.cli ""` → error en stderr, exit code 1. | Integration | AC-6, AC-9 |
 | TS-15 | Cobertura ≥ 90 % reportada por `pytest --cov`. | Coverage | AC-10 |
 
 ---

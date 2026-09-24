@@ -1,0 +1,22 @@
+[
+  { "id": "c001", "name": "María García", "email": "maria.garcia@example.com" },
+  { "id": "c002", "name": "José López", "email": "jose.lopez@example.com" },
+  { "id": "c003", "name": "Ana Martínez", "email": "ana.martinez@example.com" },
+  { "id": "c004", "name": "Carlos Hernández", "email": "carlos.hernandez@correo.mx" },
+  { "id": "c005", "name": "Lucía Fernández", "email": "lucia.fernandez@example.com" },
+  { "id": "c006", "name": "Pedro Sánchez", "email": "pedro.sanchez@correo.mx" },
+  { "id": "c007", "name": "Isabel Torres", "email": "isabel.torres@example.com" },
+  { "id": "c008", "name": "Miguel Ángel Ruiz", "email": "miguel.ruiz@example.com" },
+  { "id": "c009", "name": "Sofía Ramírez", "email": "sofia.ramirez@correo.mx" },
+  { "id": "c010", "name": "Andrés Morales", "email": "andres.morales@example.com" },
+  { "id": "c011", "name": "Carmen Díaz", "email": "carmen.diaz@example.com" },
+  { "id": "c012", "name": "Roberto García", "email": "roberto.garcia@correo.mx" },
+  { "id": "c013", "name": "Elena Vázquez", "email": "elena.vazquez@example.com" },
+  { "id": "c014", "name": "Francisco Jiménez", "email": "francisco.jimenez@correo.mx" },
+  { "id": "c015", "name": "Laura Castillo", "email": "laura.castillo@example.com" },
+  { "id": "c016", "name": "Diego Romero", "email": "diego.romero@example.com" },
+  { "id": "c017", "name": "Patricia Álvarez", "email": "patricia.alvarez@correo.mx" },
+  { "id": "c018", "name": "Marcos García", "email": "marcos.garcia@example.com" },
+  { "id": "c019", "name": "Valentina Peña", "email": "valentina.pena@example.com" },
+  { "id": "c020", "name": "Raúl Gutiérrez", "email": "raul.gutierrez@correo.mx" }
+]
